@@ -16,7 +16,9 @@ export default {
   },
   methods: {
     save: function() {
-      alert("This memo is saved.");
+      this.$store.commit("save2", {
+        body: this.memoBody,
+      });
       this.$router.push("/");
     },
   },
