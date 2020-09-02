@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <Header>My Memos</Header>
     <ul v-for="memo in newest" :key="memo.id">
       <li>
         <router-link :to="{name:'Edit',params:{id:memo.id}}">{{memo.body}}</router-link>
@@ -10,8 +11,13 @@
 </template>
 
 <script>
+import Header from "@/components/Header.vue";
+
 export default {
   name: "home",
+  components: {
+    Header,
+  },
   //It's caluculate when it is called.
   computed: {
     newest: function () {
