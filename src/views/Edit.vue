@@ -1,7 +1,7 @@
 <template>
   <div class="editor">
     <h1>Edit Memo</h1>
-    <textarea name="memo" v-model="memo.body"></textarea>
+    <textarea name="memo" v-model="memoBody"></textarea>
     <button @click="save3">Save</button>
   </div>
 </template>
@@ -9,17 +9,22 @@
 <script>
 export default {
   name: "edit",
-  computed: {
-    memo: function () {
-      let id = this.$route.params["id"];
-      return this.$store.state.memos.find((memo) => memo.id == id);
-    },
+  data: function () {
+    return {
+      memoBody: "",
+    };
+  },
+  //Run below when you visit our site.
+  mounted: function () {
+    let id = this.$route.params["id"];
+    let memo = this.$store.state.memos.find((memo) => memo.id == id);
+    this.memoBody = memo.body;
   },
   methods: {
     save3: function () {
       this.$store.commit("update", {
-        id: this.memo.id,
-        body: this.memo.body,
+        id: this.$route.params["id"],
+        body: this.memoBody,
       });
       this.$router.push("/");
     },
