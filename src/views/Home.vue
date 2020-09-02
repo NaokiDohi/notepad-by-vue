@@ -1,7 +1,10 @@
 <template>
   <div class="home">
     <ul v-for="memo in newest" :key="memo.id">
-      <li>{{memo.body}}</li>
+      <li>
+        <router-link :to="{name:'Edit',params:{id:memo.id}}">{{memo.body}}</router-link>
+        <!-- router/index.jsで指定しているnameのpathを持ってくる。 -->
+      </li>
     </ul>
   </div>
 </template>
